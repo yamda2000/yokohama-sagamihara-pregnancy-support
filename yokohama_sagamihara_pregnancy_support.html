@@ -1,0 +1,889 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>横浜市・相模原市 妊娠出産サポート比較</title>
+
+<style>
+  :root {
+    color-scheme: light;
+    --page:           #f9f9f7;
+    --surface-1:      #fcfcfb;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted:     #898781;
+    --grid:           #e1e0d9;
+    --baseline:       #c3c2b7;
+    --border:         rgba(11,11,11,0.10);
+    --series-1:       #2a78d6;
+    --series-2:       #eb6834;
+    --good-text:      #006300;
+    --warning:        #fab219;
+    --critical:       #d03b3b;
+    --wash:           rgba(42,120,214,0.07);
+    --wash-2:         rgba(235,104,52,0.07);
+    --wash-bad:       rgba(208,59,59,0.07);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --page:           #0d0d0d;
+      --surface-1:      #1a1a19;
+      --text-primary:   #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted:     #898781;
+      --grid:           #2c2c2a;
+      --baseline:       #383835;
+      --border:         rgba(255,255,255,0.10);
+      --series-1:       #3987e5;
+      --series-2:       #d95926;
+      --good-text:      #0ca30c;
+      --warning:        #fab219;
+      --critical:       #d03b3b;
+      --wash:           rgba(57,135,229,0.12);
+      --wash-2:         rgba(217,89,38,0.12);
+      --wash-bad:       rgba(208,59,59,0.14);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page:           #0d0d0d;
+    --surface-1:      #1a1a19;
+    --text-primary:   #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted:     #898781;
+    --grid:           #2c2c2a;
+    --baseline:       #383835;
+    --border:         rgba(255,255,255,0.10);
+    --series-1:       #3987e5;
+    --series-2:       #d95926;
+    --good-text:      #0ca30c;
+    --warning:        #fab219;
+    --critical:       #d03b3b;
+    --wash:           rgba(57,135,229,0.12);
+    --wash-2:         rgba(217,89,38,0.12);
+    --wash-bad:       rgba(208,59,59,0.14);
+  }
+
+  body {
+    background: var(--page);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    line-height: 1.75;
+    margin: 0;
+    padding: 0 20px 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 940px; margin: 0 auto; }
+
+  header.top { padding: 56px 0 8px; }
+  h1 {
+    font-size: clamp(1.65rem, 4.2vw, 2.4rem);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+  }
+  .lede { color: var(--text-secondary); font-size: 1.02rem; margin: 0 0 4px; max-width: 62ch; }
+  .meta { color: var(--text-muted); font-size: 0.83rem; margin-top: 14px; }
+
+  h2 {
+    font-size: 1.32rem;
+    letter-spacing: -0.01em;
+    margin: 56px 0 6px;
+    padding-top: 22px;
+    border-top: 1px solid var(--grid);
+  }
+  h3 { font-size: 1.04rem; margin: 32px 0 8px; letter-spacing: -0.005em; }
+  h2 + .sub { color: var(--text-secondary); font-size: 0.93rem; margin: 0 0 20px; max-width: 66ch; }
+  p { max-width: 68ch; }
+
+  .verdict {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px 28px;
+    margin: 32px 0 8px;
+  }
+  .verdict-head {
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+    color: var(--text-muted); text-transform: uppercase; margin-bottom: 10px;
+  }
+  .verdict strong.big {
+    font-size: 1.4rem; letter-spacing: -0.01em; display: block; margin-bottom: 12px; line-height: 1.45;
+  }
+  .verdict p { margin: 0 0 10px; color: var(--text-secondary); font-size: 0.96rem; }
+  .verdict p:last-child { margin-bottom: 0; }
+
+  .tiles { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 0; }
+  .tile {
+    flex: 1 1 200px; background: var(--surface-1);
+    border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px;
+  }
+  .tile .label { font-size: 0.79rem; color: var(--text-muted); margin-bottom: 6px; }
+  .tile .value { font-size: 1.8rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+  .tile .note { font-size: 0.79rem; color: var(--text-secondary); margin-top: 5px; }
+  .tile.accent { border-color: var(--series-1); background: var(--wash); }
+  .tile.bad { border-color: var(--critical); background: var(--wash-bad); }
+  .tile .value .unit { font-size: 0.95rem; font-weight: 500; color: var(--text-secondary); margin-left: 2px; }
+
+  figure.chart {
+    background: var(--surface-1); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px 26px 20px; margin: 24px 0 0;
+  }
+  figcaption { font-size: 1rem; font-weight: 600; margin-bottom: 3px; }
+  .figsub { font-size: 0.83rem; color: var(--text-muted); margin-bottom: 20px; max-width: 64ch; }
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 22px; }
+  .legend span { display: flex; align-items: center; gap: 7px; font-size: 0.84rem; color: var(--text-secondary); }
+  .swatch { width: 11px; height: 11px; border-radius: 3px; flex: none; }
+  .sw1 { background: var(--series-1); }
+  .sw2 { background: var(--series-2); }
+
+  .row { margin-bottom: 22px; }
+  .row-label { font-size: 0.88rem; font-weight: 600; margin-bottom: 7px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .row-label .who { font-weight: 400; color: var(--text-muted); font-size: 0.8rem; }
+  .row-total { font-variant-numeric: tabular-nums; color: var(--text-secondary); font-weight: 500; font-size: 0.86rem; white-space: nowrap; }
+  .bar { display: flex; height: 30px; gap: 2px; }
+  .seg {
+    height: 100%; border-radius: 2px; position: relative; cursor: default;
+    display: flex; align-items: center; transition: filter .15s ease;
+  }
+  .seg:hover { filter: brightness(1.12); }
+  .seg:last-child { border-radius: 2px 4px 4px 2px; }
+  .s1 { background: var(--series-1); }
+  .s2 { background: var(--series-2); }
+  .seg-label {
+    font-size: 0.77rem; font-variant-numeric: tabular-nums; color: #fff;
+    padding-left: 9px; white-space: nowrap; font-weight: 500;
+  }
+  .axis { border-top: 1px solid var(--baseline); display: flex; justify-content: space-between; padding-top: 6px; margin-top: 2px; }
+  .axis span { font-size: 0.75rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+  .tablewrap { overflow-x: auto; margin: 16px 0 8px; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 0.89rem; background: var(--surface-1); }
+  caption { text-align: left; font-size: 0.83rem; color: var(--text-muted); padding-bottom: 8px; }
+  th, td { text-align: left; padding: 11px 13px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  thead th {
+    font-size: 0.78rem; letter-spacing: 0.04em; color: var(--text-secondary);
+    background: var(--page); border-bottom: 1px solid var(--baseline); font-weight: 600; white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.num, th.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.name { font-weight: 600; }
+  tr.total td { background: var(--wash); font-weight: 600; border-top: 1px solid var(--baseline); }
+  tr.best td { background: var(--wash); }
+  tr.danger td { background: var(--wash-bad); }
+  .ok { color: var(--good-text); font-weight: 600; }
+  .ng { color: var(--critical); font-weight: 600; }
+  .win-y { color: var(--series-1); font-weight: 600; }
+  .win-s { color: var(--series-2); font-weight: 600; }
+  .tie { color: var(--text-muted); }
+
+  .callout {
+    border-left: 3px solid var(--warning); background: var(--surface-1);
+    border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 22px 0;
+    font-size: 0.92rem; color: var(--text-secondary);
+  }
+  .callout.danger { border-left-color: var(--critical); }
+  .callout.good { border-left-color: var(--good-text); }
+  .callout strong { color: var(--text-primary); }
+
+  .plans { display: flex; flex-wrap: wrap; gap: 14px; margin: 22px 0 8px; }
+  .plan {
+    flex: 1 1 300px; background: var(--surface-1); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px 22px;
+  }
+  .plan.best { border-color: var(--series-1); border-width: 2px; }
+  .plan .tag {
+    font-size: 0.71rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 8px;
+  }
+  .plan.best .tag { color: var(--series-1); }
+  .plan h4 { margin: 0 0 6px; font-size: 1.02rem; letter-spacing: -0.01em; }
+  .plan .amount { font-size: 1.4rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 10px; font-variant-numeric: tabular-nums; }
+  .plan .amount small { font-size: 0.78rem; font-weight: 500; color: var(--text-muted); display: block; letter-spacing: 0; }
+  .plan ul { margin: 0; padding-left: 17px; font-size: 0.86rem; color: var(--text-secondary); }
+  .plan li { margin-bottom: 5px; }
+
+  .pill {
+    display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 2px 9px;
+    border-radius: 999px; border: 1px solid var(--border); color: var(--text-secondary);
+    background: var(--page); margin-left: 8px; vertical-align: middle; white-space: nowrap;
+  }
+  .pill.city-y { color: var(--series-1); border-color: var(--series-1); background: var(--wash); }
+  .pill.city-s { color: var(--series-2); border-color: var(--series-2); background: var(--wash-2); }
+
+  ol.timeline { list-style: none; padding: 0; margin: 18px 0; }
+  ol.timeline li {
+    position: relative; padding: 0 0 20px 34px; border-left: 1px solid var(--grid);
+    margin-left: 9px;
+  }
+  ol.timeline li:last-child { border-left-color: transparent; padding-bottom: 0; }
+  ol.timeline li::before {
+    content: ""; position: absolute; left: -5px; top: 7px; width: 9px; height: 9px;
+    border-radius: 50%; background: var(--series-1); border: 2px solid var(--page);
+  }
+  ol.timeline li.critical::before { background: var(--critical); }
+  ol.timeline .when { font-size: 0.78rem; color: var(--text-muted); display: block; }
+  ol.timeline .what { font-weight: 600; }
+  ol.timeline .detail { font-size: 0.9rem; color: var(--text-secondary); }
+
+  ul.plain { padding-left: 20px; }
+  ul.plain li { margin-bottom: 7px; color: var(--text-secondary); }
+  ul.plain li strong { color: var(--text-primary); }
+
+  a { color: var(--series-1); text-decoration: none; border-bottom: 1px solid var(--border); }
+  a:hover { border-bottom-color: currentColor; }
+  .sources { font-size: 0.85rem; color: var(--text-secondary); }
+  .sources li { margin-bottom: 6px; }
+
+  footer.foot {
+    margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--grid);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+
+  @media (max-width: 620px) {
+    .tile .value { font-size: 1.5rem; }
+    .seg-label { font-size: 0.69rem; padding-left: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header class="top">
+  <h1>妻が横浜市へ転入するプラン<br>いつ引っ越すのが一番得か</h1>
+  <p class="lede">夫が横浜市・妻が相模原市に居住、入籍予定で妊娠中というケースの整理です。妊娠・出産の給付は妊婦本人の住民票で決まるため、妻が横浜市民になるほうが約10.8万円多く受け取れます。あとは転入の時期だけが問題になります。</p>
+  <p class="meta">2026年9月時点の公表情報にもとづく／単胎・第1子・市民税課税世帯を標準ケースとして試算</p>
+</header>
+
+<div class="verdict">
+  <div class="verdict-head">結論</div>
+  <strong class="big">いつ引っ越してもいいわけではありません。<br>ベストは「妊娠届を出す前」、遅くとも「出産の1か月前」まで。出産後に転入すると14万円を失います。</strong>
+  <p>転入時期によって影響を受ける制度は3つあります。<strong>出産費用助成金9万円</strong>は出産日に横浜市民でなければ対象外。<strong>妊婦健診助成金5万円</strong>は転入後に健診を受けて妊娠中に申請しないと消えます。<strong>妊婦健診の補助券</strong>は転入が遅いほど交付枚数が減ります。</p>
+  <p>逆に、金額が転入時期に左右されない制度もあります。妊婦のための支援給付10万円は、1回目を相模原で受け取っていても2回目は横浜で受け取れるため、総額は変わりません。出産育児一時金50万円と児童手当も住所に関係なく同額です。</p>
+  <p><strong>ひとことで言うと、早ければ早いほど有利で、出産後は手遅れです。</strong>体への負担も考えると、妊娠届出前に間に合わないなら安定期（16〜27週）に済ませるのが現実的です。</p>
+</div>
+
+<div class="tiles">
+  <div class="tile accent">
+    <div class="label">妊娠届出前に転入</div>
+    <div class="value">332,700<span class="unit">円</span></div>
+    <div class="note">満額。補助券もフルで使える</div>
+  </div>
+  <div class="tile">
+    <div class="label">妊娠後期に転入</div>
+    <div class="value">約280,000<span class="unit">円</span></div>
+    <div class="note">現金14万円は確保、補助券が減る</div>
+  </div>
+  <div class="tile bad">
+    <div class="label">出産後に転入</div>
+    <div class="value" style="color:var(--critical)">225,000<span class="unit">円</span></div>
+    <div class="note">現金14万円が丸ごと消滅</div>
+  </div>
+</div>
+
+<h2>1. 転入のタイミングで何が変わるか</h2>
+<p class="sub">制度ごとに「締切」が違います。どれが時期の影響を受けるかを分けて理解するのが早道です。</p>
+
+<div class="tablewrap">
+<table>
+  <caption>転入時期の影響を受ける制度・受けない制度</caption>
+  <thead>
+    <tr><th>制度</th><th class="num">金額</th><th>いつまでに横浜市民になっていれば良いか</th></tr>
+  </thead>
+  <tbody>
+    <tr class="danger">
+      <td class="name">出産費用助成金</td>
+      <td class="num">最大 90,000円</td>
+      <td><strong class="ng">出産日まで</strong>。「出産日から申請日まで横浜市内に住民登録がある方」が条件なので、出産日に相模原市民だと一切もらえません。1日でも遅れると9万円が消えます。</td>
+    </tr>
+    <tr class="danger">
+      <td class="name">妊婦健康診査費用助成金</td>
+      <td class="num">50,000円</td>
+      <td><strong class="ng">出産前に「転入 → 健診1回 → 申請」を終える必要</strong>。「健診受診日から申請日まで継続して横浜市民」かつ「申請は妊娠中のみ」という二重の条件です。転入前に相模原で受けた健診では申請できません。</td>
+    </tr>
+    <tr>
+      <td class="name">妊婦健診の補助券</td>
+      <td class="num">最大 82,700円<br>（14回分）</td>
+      <td><strong>早いほど有利</strong>。転入時に残りの妊娠週数に応じた枚数が交付されるため、遅いほど枚数が減ります。ただし相模原で使った分の公費は既に受けているので、まるまる損になるわけではありません。</td>
+    </tr>
+    <tr>
+      <td class="name">産前産後ヘルパー派遣</td>
+      <td class="num">産前20回<br>（1回1,500円）</td>
+      <td><strong>早いほど有利</strong>。産前枠は妊娠中に横浜市民でないと使えません。相模原市には産前の家事支援枠がないので、これは横浜ならではの利点です。</td>
+    </tr>
+    <tr>
+      <td class="name">妊婦のための支援給付</td>
+      <td class="num">100,000円</td>
+      <td><span class="ok">いつでも同額</span>。1回目を相模原で受給済みでも、2回目5万円は横浜で受け取れます。二重受給はできませんが、総額10万円は変わりません。</td>
+    </tr>
+    <tr>
+      <td class="name">産婦健康診査</td>
+      <td class="num">10,000円<br>（2回）</td>
+      <td><span class="ok">出産日時点の市</span>のものを使います。金額は両市同じです。</td>
+    </tr>
+    <tr>
+      <td class="name">出産育児一時金・児童手当</td>
+      <td class="num">50万円・月1〜3万円</td>
+      <td><span class="ok">住所は無関係</span>。健康保険と国の制度なので、どちらの市でも同額です。</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2>2. 転入時期別・受け取れる金額</h2>
+<p class="sub">同じ横浜転入でも、時期によってここまで変わります。</p>
+
+<div class="tablewrap">
+<table>
+  <caption>◎＝満額／○＝受け取れる／△＝減る／✕＝もらえない</caption>
+  <thead>
+    <tr>
+      <th>転入時期</th>
+      <th class="num">支援給付<br>10万円</th>
+      <th class="num">健診助成<br>5万円</th>
+      <th class="num">出産助成<br>9万円</th>
+      <th class="num">健診補助券</th>
+      <th class="num">合計の目安</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="best">
+      <td class="name">妊娠届出前<br><span style="font-weight:400;color:var(--text-muted);font-size:0.83rem">〜妊娠11週ごろ</span></td>
+      <td class="num ok">◎</td>
+      <td class="num ok">◎</td>
+      <td class="num ok">◎</td>
+      <td class="num ok">◎ 14回フル</td>
+      <td class="num">332,700円</td>
+    </tr>
+    <tr>
+      <td class="name">安定期<br><span style="font-weight:400;color:var(--text-muted);font-size:0.83rem">16〜27週</span></td>
+      <td class="num ok">◎</td>
+      <td class="num ok">◎</td>
+      <td class="num ok">◎</td>
+      <td class="num">△ 残り週数分</td>
+      <td class="num">約31万円</td>
+    </tr>
+    <tr>
+      <td class="name">妊娠後期<br><span style="font-weight:400;color:var(--text-muted);font-size:0.83rem">28週〜出産1か月前</span></td>
+      <td class="num ok">◎</td>
+      <td class="num ok">○</td>
+      <td class="num ok">◎</td>
+      <td class="num">△ わずか</td>
+      <td class="num">約28万円</td>
+    </tr>
+    <tr>
+      <td class="name">臨月・出産直前</td>
+      <td class="num ok">◎</td>
+      <td class="num" style="color:var(--warning);font-weight:600">△ 危険</td>
+      <td class="num ok">◎</td>
+      <td class="num">✕ ほぼなし</td>
+      <td class="num">約25万円</td>
+    </tr>
+    <tr class="danger">
+      <td class="name">出産後</td>
+      <td class="num ok">◎</td>
+      <td class="num ng">✕</td>
+      <td class="num ng">✕</td>
+      <td class="num ng">✕</td>
+      <td class="num">225,000円</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout danger">
+  <strong>臨月の転入が危ない理由。</strong>妊婦健診助成金5万円は「転入 → 健診を1回受ける → 妊娠中に申請」という3ステップが必要です。臨月に引っ越すと、健診を受ける前に陣痛が来てしまう可能性があり、出産した瞬間に申請権が消えます。<strong>出産予定日の1か月前には転入を終えている</strong>のが安全ラインです。予定日より早く産まれることも珍しくありません。
+</div>
+
+<h2>3. では、いつがベストか</h2>
+
+<h3>第1候補：妊娠届を出す前（妊娠6〜11週ごろ）</h3>
+<p>手続きがいちばんシンプルになります。横浜市で妊娠届を出せば補助券14枚をそのまま受け取れ、相模原の受診券を返却して切り替える手間もありません。産前ヘルパー20回も最大限使えます。</p>
+<p>ただし、この時期はつわりが最もつらい頃で、引越し作業は身体的にかなりの負担です。心拍確認の受診と婚姻届・転入届が重なる時期でもあります。<strong>夫が引越し作業の大半を担えるなら、この選択が最も有利です。</strong></p>
+
+<h3>第2候補（現実的なおすすめ）：安定期に入ってすぐ（妊娠16〜20週）</h3>
+<p>つわりが落ち着き、お腹もまだ大きくないので身体が動きます。この時期でも<strong>現金給付14万円は満額確保できます</strong>。減るのは健診補助券の枚数だけで、しかも転入前に相模原で使った分の公費は既に受け取っているため、実質的な損失は数万円程度にとどまります。</p>
+<p>産院の転院を考えるならこの時期がぎりぎりです。人気の産院は分娩予約が早く埋まるので、転入先での出産を考えているなら物件探しと並行して産院も押さえてください。</p>
+
+<h3>避けるべき：妊娠32週以降と、出産後</h3>
+<p>妊娠後期は移動そのものが負担な上、健診助成金の申請が間に合わないリスクが出てきます。<strong>出産後の転入は最悪で、14万円が丸ごと消えます</strong>。この14万円は横浜市に住むメリットのほぼ全てなので、それを逃すと転入する金銭的な意味がなくなります。</p>
+
+<div class="callout good">
+  <strong>結論をひとことで。</strong>身体が動くなら妊娠届出前、無理なら安定期に入ったらすぐ。<strong>出産予定日の1か月前が絶対的な締切</strong>と考えてください。
+</div>
+
+<h2>4. 大原則：どの制度が誰の住所で決まるか</h2>
+<p class="sub">夫の住所は妊娠・出産の給付にほとんど関係ありません。ここを押さえておくと判断が楽になります。</p>
+
+<div class="tablewrap">
+<table>
+  <caption>制度ごとの「判定に使われる住所」</caption>
+  <thead>
+    <tr><th>制度</th><th>誰の住所で決まるか</th><th>ポイント</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="name">妊婦のための支援給付（10万円）</td>
+      <td>妻（妊婦本人）</td>
+      <td>国の制度で金額は両市同じ。二重受給は不可。1回目を相模原で受給後に横浜へ転入した場合、1回目は再受給できませんが2回目は横浜で受け取れます。</td>
+    </tr>
+    <tr>
+      <td class="name">妊婦健診の受診券・補助券</td>
+      <td>妻</td>
+      <td>転出すると元の市の券は無効。転入先で残りの妊娠週数に応じて交付し直されます。</td>
+    </tr>
+    <tr>
+      <td class="name">妊婦健康診査費用助成金（横浜 5万円）</td>
+      <td>妻</td>
+      <td><strong>健診受診日から申請日まで継続して横浜市民</strong>であることが条件。</td>
+    </tr>
+    <tr>
+      <td class="name">出産費用助成金（横浜 最大9万円）</td>
+      <td>妻</td>
+      <td><strong>出産日から申請日まで横浜市民</strong>であることが条件。</td>
+    </tr>
+    <tr>
+      <td class="name">産後ケア・ヘルパー派遣</td>
+      <td>妻</td>
+      <td>住民登録のある市のサービスを使います。</td>
+    </tr>
+    <tr>
+      <td class="name">こども医療費助成</td>
+      <td>子ども</td>
+      <td>通常は母と同じ住所になります。横浜市は18歳まで完全無料・所得制限なし。</td>
+    </tr>
+    <tr>
+      <td class="name">児童手当</td>
+      <td>生計中心者（収入が多いほう）</td>
+      <td>金額は全国一律なので、どちらの市でも同額です。</td>
+    </tr>
+    <tr>
+      <td class="name">出産育児一時金・出産手当金・育休給付</td>
+      <td>住所は無関係</td>
+      <td>健康保険・雇用保険の制度なので、どちらに住んでも変わりません。</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2>5. 横浜転入と、動かない場合の比較</h2>
+<p class="sub">出産育児一時金50万円と児童手当はどちらでも同額なので、比較から除いています。</p>
+
+<figure class="chart">
+  <figcaption>入籍・出産にあたって自治体から受け取れる金額</figcaption>
+  <div class="figsub">単胎・第1子・市民税課税世帯／妊娠初期に転入した場合の試算</div>
+
+  <div class="legend">
+    <span><i class="swatch sw1"></i>口座に振り込まれる現金給付</span>
+    <span><i class="swatch sw2"></i>健診の公費負担（受診券・補助券）</span>
+  </div>
+
+  <div class="row">
+    <div class="row-label"><span>妻が横浜市へ転入<span class="who">　妊娠届出前</span></span><span class="row-total">332,700円</span></div>
+    <div class="bar">
+      <div class="seg s1" style="width:68.6%" title="現金給付 240,000円：妊婦のための支援給付10万＋妊婦健診助成5万＋出産費用助成9万">
+        <span class="seg-label">現金 240,000円</span>
+      </div>
+      <div class="seg s2" style="width:26.5%" title="健診公費 92,700円：妊婦健診補助券82,700円＋産婦健診10,000円">
+        <span class="seg-label">健診 92,700円</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="row-label"><span>妻が相模原市のまま<span class="who">　別居継続、または出産後に転入</span></span><span class="row-total">225,000円</span></div>
+    <div class="bar">
+      <div class="seg s1" style="width:28.6%" title="現金給付 100,000円：妊婦のための支援給付のみ">
+        <span class="seg-label">現金 100,000円</span>
+      </div>
+      <div class="seg s2" style="width:35.7%" title="健診公費 125,000円：妊婦健診受診券115,000円＋産婦健診10,000円">
+        <span class="seg-label">健診 125,000円</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="axis">
+    <span>0</span><span>10万</span><span>20万</span><span>30万</span><span>35万円</span>
+  </div>
+</figure>
+
+<div class="callout">
+  <strong>健診の券だけを見ると相模原のほうが手厚い点に注意。</strong>相模原市の受診券は16回・115,000円分で、横浜市の14回・82,700円分を上回ります。それでも横浜が有利になるのは、券とは別枠の現金給付14万円があるからです。<strong>窓口で立て替える金額は横浜のほうが大きくなりがち</strong>で、5万円は後から振り込まれる形（申請から2〜3か月）だという点は資金繰りとして頭に入れておいてください。
+</div>
+
+<h2>6. 転入後の手続きの流れ</h2>
+<p class="sub">順番を間違えると、もらえるはずの5万円が消えます。</p>
+
+<ol class="timeline">
+  <li>
+    <span class="when">転入日</span>
+    <span class="what">横浜市の区役所で転入届＋婚姻届</span>
+    <span class="detail">婚姻届と転入届は同じ日に窓口で処理できます。妊娠届出前ならこの時に妊娠届も出して補助券14枚を受け取ります。</span>
+  </li>
+  <li>
+    <span class="when">転入と同時</span>
+    <span class="what">相模原市の受診券を返却し、横浜市の補助券に切り替え</span>
+    <span class="detail">相模原市の受診券は転出した時点で使えなくなります。使い残しがあれば区役所こども家庭支援課へ持参してください。母子健康手帳はそのまま使えます。</span>
+  </li>
+  <li class="critical">
+    <span class="when">転入後、最初の妊婦健診を受けたらすぐ【最重要】</span>
+    <span class="what">妊婦健康診査費用助成金 5万円をアプリ「パマトコ」から申請</span>
+    <span class="detail">申請できるのは<strong>妊娠中だけ</strong>で、出産すると権利が消えます。転入前に相模原で受けた健診では申請できないので、転入後に1回健診を受けたら、その足で申請してください。妊婦本人名義での申請が原則です。</span>
+  </li>
+  <li>
+    <span class="when">出産予定日の8週間前〜</span>
+    <span class="what">妊婦のための支援給付（2回目 5万円）を届出</span>
+    <span class="detail">1回目を相模原で受給済みでも、2回目は横浜市で受け取れます。胎児の数を届け出る手続きです。</span>
+  </li>
+  <li>
+    <span class="when">出産</span>
+    <span class="what">出産日時点で横浜市に住民登録があること</span>
+    <span class="detail">これが出産費用助成金9万円の条件です。</span>
+  </li>
+  <li>
+    <span class="when">出生から14日以内</span>
+    <span class="what">出生届 → 児童手当・小児医療証の申請</span>
+    <span class="detail">児童手当は申請が遅れた月の分はもらえません。出生届と同じ日に済ませてください。</span>
+  </li>
+  <li>
+    <span class="when">出産日の翌日から1年以内</span>
+    <span class="what">出産費用助成金 最大9万円を申請</span>
+    <span class="detail">母子健康手帳の表紙、健康保険が確認できる書類、口座情報が必要。区役所では受け付けておらず、パマトコまたは郵送のみです。出産した本人しか申請できません。</span>
+  </li>
+</ol>
+
+<div class="callout danger">
+  <strong>産院を相模原のまま続ける場合は要確認。</strong>横浜市の補助券が使えるのは横浜市と契約している医療機関だけです（市外でも契約していれば使えます）。相模原の産院に通い続けるなら、その産院が横浜市の契約機関かどうかを転入前に確認してください。契約外だった場合はいったん全額自己負担になり、後から償還払い（払い戻し）の申請をすることになります。償還払いの期限は最後の妊婦健診または出産日から1年以内、振込まで約2か月かかります。なお<strong>産婦健康診査には償還払い制度がありません</strong>ので、産後健診は契約機関で受けてください。
+</div>
+
+<div class="callout">
+  <strong>出産費用助成金9万円は、健保の付加給付があると減額されます。</strong>勤務先の健康保険組合から出産育児一時金の付加給付が出る場合、その額が9万円から差し引かれます。付加給付が9万円以上なら支給ゼロです。転入を決める前に、ご自身の健保の付加給付額を確認しておくと試算がぶれません。
+</div>
+
+<h2>7. 子どもの医療費は長い目で見ると差が縮まります</h2>
+<p>横浜市は2026年6月から18歳年度末まで所得制限なし・自己負担なしになりました。相模原市は小学6年生までは無料ですが、中学生以上は通院1回500円の自己負担があり、高校生世代には所得制限もあります。</p>
+<p>ただし相模原市は<strong>2027年4月から中学生以上の自己負担を撤廃する予定</strong>です。お子さんが中学生になる十数年後には、この差はほぼ解消されている可能性が高いといえます。医療費の違いを理由に急いで転入する必要はなく、乳幼児期はどちらも無料です。</p>
+
+<h2>8. 国の制度（どちらに住んでも同じ）</h2>
+<p class="sub">金額が最も大きいのはこちらです。住所ではなく加入している保険で決まります。</p>
+
+<div class="tablewrap">
+<table>
+  <caption>両市とも内容は同じ。申請先は健康保険・勤務先・年金事務所など。</caption>
+  <thead>
+    <tr><th>制度</th><th class="num">金額</th><th>ポイント</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="name">出産育児一時金</td>
+      <td class="num">子ども1人 50万円</td>
+      <td>妊娠12週（85日）以降の出産で支給。多くの産院は「直接支払制度」で出産費用から自動的に差し引かれます。50万円より安く済めば差額を請求できます。</td>
+    </tr>
+    <tr>
+      <td class="name">出産手当金</td>
+      <td class="num">日給の約2/3 × 98日</td>
+      <td>勤務先の健康保険に本人が加入している場合のみ。産前42日＋産後56日分。国民健康保険の方・扶養に入っている方は対象外です。</td>
+    </tr>
+    <tr>
+      <td class="name">育児休業給付金</td>
+      <td class="num">賃金の67%→50%</td>
+      <td>雇用保険から。開始180日は67%、以降50%。<strong>夫婦ともに14日以上取得すると「出生後休業支援給付」が上乗せ</strong>され、最大28日間は手取り実質10割相当になります。</td>
+    </tr>
+    <tr>
+      <td class="name">児童手当</td>
+      <td class="num">月1〜3万円</td>
+      <td>0〜2歳は月15,000円、3歳〜高校生年代は月10,000円、第3子以降は月30,000円。所得制限は撤廃済み。収入が多いほうが申請者になります。</td>
+    </tr>
+    <tr>
+      <td class="name">国民年金保険料の産前産後免除</td>
+      <td class="num">4か月分</td>
+      <td>国民年金第1号被保険者が対象。免除されても将来の年金額は減りません。</td>
+    </tr>
+    <tr>
+      <td class="name">国民健康保険料の産前産後減額</td>
+      <td class="num">4か月分</td>
+      <td>国保加入者の所得割・均等割が減額されます。市の国保窓口へ届出。</td>
+    </tr>
+    <tr>
+      <td class="name">高額療養費・医療費控除</td>
+      <td class="num">状況による</td>
+      <td>帝王切開・切迫早産の入院など保険診療分は高額療養費の対象。1年間の医療費が10万円を超えたら確定申告で医療費控除。健診費や通院交通費も算入できます。<strong>夫婦の医療費は合算でき、所得の高いほうで申告すると還付が大きくなります。</strong></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2>9. 横浜市の制度 <span class="pill city-y">全リスト</span></h2>
+<p class="sub">★印は横浜市の独自制度（相模原市にはないもの）。</p>
+
+<div class="tablewrap">
+<table>
+  <caption>横浜市／妊娠期から産後・子育て期まで</caption>
+  <thead>
+    <tr><th>制度</th><th class="num">金額・自己負担</th><th>対象・条件</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="name">妊婦のための支援給付</td>
+      <td class="num">5万円＋5万円<br>＝計10万円</td>
+      <td>妊娠届出（心拍確認後）で1回目5万円、出産後に胎児1人につき5万円。双子なら計15万円。保健師等との面談が要件。申請期限は心拍確認日から2年以内。</td>
+    </tr>
+    <tr>
+      <td class="name">妊婦健康診査 補助券</td>
+      <td class="num">14回分・82,700円</td>
+      <td>妊娠届出時に交付。多胎はさらに5枚追加。市と契約している医療機関で使用。</td>
+    </tr>
+    <tr>
+      <td class="name">★妊婦健康診査費用助成金</td>
+      <td class="num">5万円</td>
+      <td>補助券とは別枠の現金給付。2024年4月1日以降に妊婦健診を1回でも受けていれば対象。<strong>申請は妊娠中のみ</strong>。アプリ「パマトコ」から本人が申請。</td>
+    </tr>
+    <tr>
+      <td class="name">★出産費用助成金</td>
+      <td class="num">子ども1人 最大9万円</td>
+      <td>2026年4月1日以降の出産が対象（2025年4月以降の出産も出産日から1年以内なら申請可）。妊娠85日以上の流産・死産も対象。<strong>健保組合から出産育児一時金の付加給付がある場合はその分を差し引き</strong>。</td>
+    </tr>
+    <tr>
+      <td class="name">産婦健康診査</td>
+      <td class="num">2回 × 上限5,000円</td>
+      <td>産後2週間・1か月頃。産後うつの質問票（EPDS）を含みます。産後22〜60日が対象期間。償還払い制度はありません。</td>
+    </tr>
+    <tr>
+      <td class="name">産後母子ケア事業</td>
+      <td class="num">宿泊 約6,600円/泊<br>日帰り 約2,000円<br>訪問 約1,000円</td>
+      <td>助産院・産院での宿泊／日帰り、助産師の自宅訪問。非課税世帯は減額。区役所こども家庭支援課へ申込。</td>
+    </tr>
+    <tr>
+      <td class="name">★産前産後ヘルパー派遣</td>
+      <td class="num">1回2時間 1,500円</td>
+      <td>家事（食事・洗濯・掃除）と育児（授乳介助・沐浴・おむつ）の支援。<strong>産前20回＋産後20回</strong>（多胎は産後40回）。相模原市には産前の枠がありません。産後5か月未満まで（多胎は1年未満）。</td>
+    </tr>
+    <tr>
+      <td class="name">こんにちは赤ちゃん訪問</td>
+      <td class="num">無料</td>
+      <td>生後4か月までに助産師・保健師が全戸訪問。ここで支援給付2回目を案内されます。</td>
+    </tr>
+    <tr>
+      <td class="name">不育症検査費助成</td>
+      <td class="num">検査費の7割<br>上限6万円</td>
+      <td>流産・死産を繰り返した方向けの先進医療検査。</td>
+    </tr>
+    <tr>
+      <td class="name">★小児医療費助成</td>
+      <td class="num">窓口負担 0円</td>
+      <td><strong>2026年6月から18歳年度末まで拡大</strong>。所得制限なし・一部負担金なしで、政令市初の18歳まで完全無償化。</td>
+    </tr>
+    <tr>
+      <td class="name">先天性代謝異常等検査・新生児聴覚検査</td>
+      <td class="num">公費負担</td>
+      <td>出生後の赤ちゃんの検査。</td>
+    </tr>
+    <tr>
+      <td class="name">アプリ「パマトコ」</td>
+      <td class="num">無料</td>
+      <td>横浜市の子育て応援サイト・アプリ。健診助成金・出産費用助成金などの<strong>オンライン申請がここに集約</strong>されており、区役所に行かずに完結します。</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2>10. 相模原市の制度 <span class="pill city-s">全リスト</span></h2>
+<p class="sub">◆印は相模原市が横浜市より手厚い項目。転入前に使えるものは使い切っておいてください。</p>
+
+<div class="tablewrap">
+<table>
+  <caption>相模原市／妊娠期から産後・子育て期まで</caption>
+  <thead>
+    <tr><th>制度</th><th class="num">金額・自己負担</th><th>対象・条件</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="name">妊婦のための支援給付</td>
+      <td class="num">5万円＋5万円<br>＝計10万円</td>
+      <td>横浜市と同内容（国の制度）。妊娠届出と同時に申請、振込まで2〜3か月。2回目は出産予定日の8週間前から届出可能。</td>
+    </tr>
+    <tr>
+      <td class="name">◆妊婦健康診査 受診券</td>
+      <td class="num">16回分・115,000円</td>
+      <td>A票23,000円×1、B票10,000円×1、C票12,000円×1、D票5,000円×8、E票6,000円×5。多胎はF票5,000円×3を追加。<strong>券面額・回数とも横浜市を上回ります。</strong>2026年4月から「補助券」→「受診券」に名称変更（金額・回数の変更なし）。</td>
+    </tr>
+    <tr>
+      <td class="name">産婦健康診査</td>
+      <td class="num">2回 × 上限5,000円</td>
+      <td>産後2週間・4週間頃。産後8週まで利用可。償還払い制度もあります。</td>
+    </tr>
+    <tr>
+      <td class="name">◆産後ケア事業</td>
+      <td class="num">通所 1,000円<br>訪問 1,500円<br>（6・7回目は倍額）</td>
+      <td>宿泊・通所・訪問の3種類。通算7回まで（多胎は14回）。非課税世帯は半額。<strong>通所の自己負担は横浜市の日帰り（約2,000円）より安い。</strong></td>
+    </tr>
+    <tr>
+      <td class="name">子育て世帯訪問支援事業</td>
+      <td class="num">1回2時間 1,800円</td>
+      <td>家事支援ヘルパー。非課税世帯900円。<strong>対象は出生後1年以内</strong>で、産前の利用枠はありません。</td>
+    </tr>
+    <tr>
+      <td class="name">こんにちは赤ちゃん事業</td>
+      <td class="num">無料</td>
+      <td>生後4か月までの全戸訪問。</td>
+    </tr>
+    <tr>
+      <td class="name">不育症検査費用助成</td>
+      <td class="num">上限5万円<br>（県事業は上限6万円）</td>
+      <td>夫婦1組につき1回。神奈川県の助成事業も利用できます。</td>
+    </tr>
+    <tr>
+      <td class="name">こども医療費助成</td>
+      <td class="num">小6まで 0円<br>中学生〜 通院1回500円</td>
+      <td>小学6年生までは所得制限なし・全額助成。中学生以上は課税世帯で通院1回500円、高校生世代は<strong>所得制限あり</strong>。<strong>2027年4月から中学生以上の自己負担が撤廃予定。</strong></td>
+    </tr>
+    <tr>
+      <td class="name">ハロー・ベビークラス／マタニティオーラルセミナー</td>
+      <td class="num">無料</td>
+      <td>母親・父親教室、妊婦歯科教室。転入前でも参加できるものがあれば活用を。</td>
+    </tr>
+    <tr>
+      <td class="name">助産制度</td>
+      <td class="num">出産費用の負担軽減</td>
+      <td>経済的に出産費用の支払いが困難な方向けに、指定助産施設での出産費用を助成。</td>
+    </tr>
+    <tr>
+      <td class="name">アプリ「さがプリコ」</td>
+      <td class="num">無料</td>
+      <td>電子母子健康手帳アプリ。</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2>11. 項目別の直接比較</h2>
+<p class="sub">同じ条件（単胎・第1子・市民税課税世帯）で並べたときの勝ち負け。</p>
+
+<div class="tablewrap">
+<table>
+  <caption>青字＝横浜市が有利／オレンジ字＝相模原市が有利／グレー＝同じ</caption>
+  <thead>
+    <tr><th>項目</th><th class="num">横浜市</th><th class="num">相模原市</th><th>判定</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="name">妊婦のための支援給付</td>
+      <td class="num">100,000円</td>
+      <td class="num">100,000円</td>
+      <td class="tie">引き分け（国の制度）</td>
+    </tr>
+    <tr>
+      <td class="name">妊婦健診の公費（券）</td>
+      <td class="num">82,700円／14回</td>
+      <td class="num">115,000円／16回</td>
+      <td class="win-s">相模原 +32,300円</td>
+    </tr>
+    <tr>
+      <td class="name">妊婦健診の現金上乗せ</td>
+      <td class="num">50,000円</td>
+      <td class="num">—</td>
+      <td class="win-y">横浜 +50,000円</td>
+    </tr>
+    <tr>
+      <td class="name">健診まわり 小計</td>
+      <td class="num">132,700円</td>
+      <td class="num">115,000円</td>
+      <td class="win-y">横浜 +17,700円</td>
+    </tr>
+    <tr>
+      <td class="name">出産費用助成金</td>
+      <td class="num">最大 90,000円</td>
+      <td class="num">—</td>
+      <td class="win-y">横浜 +90,000円</td>
+    </tr>
+    <tr>
+      <td class="name">産婦健診</td>
+      <td class="num">10,000円（2回）</td>
+      <td class="num">10,000円（2回）</td>
+      <td class="tie">引き分け</td>
+    </tr>
+    <tr>
+      <td class="name">産後ケア 訪問</td>
+      <td class="num">約1,000円/回</td>
+      <td class="num">1,500円/回</td>
+      <td class="win-y">横浜がやや安い</td>
+    </tr>
+    <tr>
+      <td class="name">産後ケア 通所・日帰り</td>
+      <td class="num">約2,000円/回</td>
+      <td class="num">1,000円/回</td>
+      <td class="win-s">相模原が安い</td>
+    </tr>
+    <tr>
+      <td class="name">家事育児ヘルパー</td>
+      <td class="num">1,500円/2h<br>産前20回＋産後20回</td>
+      <td class="num">1,800円/2h<br>産後1年以内</td>
+      <td class="win-y">横浜（安く、産前も使える）</td>
+    </tr>
+    <tr>
+      <td class="name">不育症検査助成</td>
+      <td class="num">上限60,000円</td>
+      <td class="num">上限50,000円<br>（県は60,000円）</td>
+      <td class="tie">ほぼ同等</td>
+    </tr>
+    <tr>
+      <td class="name">子どもの医療費（0〜小6）</td>
+      <td class="num">0円</td>
+      <td class="num">0円</td>
+      <td class="tie">引き分け</td>
+    </tr>
+    <tr>
+      <td class="name">子どもの医療費（中学生〜18歳）</td>
+      <td class="num">0円・所得制限なし</td>
+      <td class="num">通院1回500円<br>高校生は所得制限あり</td>
+      <td class="win-y">横浜（2027年4月に差は縮小）</td>
+    </tr>
+    <tr class="total">
+      <td class="name">妊娠・出産関連の合計</td>
+      <td class="num">332,700円</td>
+      <td class="num">225,000円</td>
+      <td class="win-y">横浜 +107,700円</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2>12. 出典</h2>
+<ul class="sources">
+  <li><a href="https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/teate/">横浜市 各種手当・助成</a></li>
+  <li><a href="https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/teate/syussanjosei.html">横浜市 出産費用助成金</a></li>
+  <li><a href="https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/teate/ninpukenshinjosei.html">横浜市 妊婦健康診査費用助成金</a></li>
+  <li><a href="https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/teate/syussankosodateouen.html">横浜市 妊婦のための支援給付事業</a></li>
+  <li><a href="https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/shido/kenshin/ninpukenshin.html">横浜市 妊婦健康診査（補助券・償還払い）</a></li>
+  <li><a href="https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/ninshin/sangoboshikea.html">横浜市 産後母子ケア事業</a></li>
+  <li><a href="https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/ninshin/sanzensango.html">横浜市 産前産後ヘルパー派遣事業</a></li>
+  <li><a href="https://www.city.yokohama.lg.jp/kenko-iryo-fukushi/kenko-iryo/iryohijosei/shoni/shotokukanwa.html">横浜市 小児医療費助成（令和8年6月から18歳まで拡大）</a></li>
+  <li><a href="https://www.city.sagamihara.kanagawa.jp/lifeevent/1012104.html">相模原市 妊娠・出産</a></li>
+  <li><a href="https://www.city.sagamihara.kanagawa.jp/kosodate/kenko/1026627/ninshin/1007289.html">相模原市 妊婦健康診査</a></li>
+  <li><a href="https://www.city.sagamihara.kanagawa.jp/kosodate/1026602/kosodate/1026604/1018607/1026960.html">相模原市 妊婦のための支援給付事業</a></li>
+  <li><a href="https://www.city.sagamihara.kanagawa.jp/kosodate/1026602/kosodate/1026604/1021108.html">相模原市 産婦健康診査</a></li>
+  <li><a href="https://www.city.sagamihara.kanagawa.jp/kosodate/1026602/kosodate/1026604/1021109.html">相模原市 産後ケア事業</a></li>
+  <li><a href="https://www.city.sagamihara.kanagawa.jp/kosodate/1026602/kosodate/1025906.html">相模原市 子育て世帯訪問支援事業</a></li>
+  <li><a href="https://www.city.sagamihara.kanagawa.jp/kosodate/kenko/1026630/1007567/1007579/1007580.html">相模原市 こども医療費助成</a></li>
+</ul>
+
+<h2>13. 相談先</h2>
+<ul class="plain">
+  <li><strong>横浜市 妊婦のための支援給付 専用コールセンター</strong>　0120-616-626</li>
+  <li><strong>横浜市 妊婦健康診査費用助成金 コールセンター</strong>　0120-330-043</li>
+  <li><strong>横浜市 出産費用助成金 専用コールセンター</strong>　0120-547-059（月〜金 9時〜17時）</li>
+  <li><strong>相模原市 こども家庭課</strong>　042-769-8345</li>
+  <li>転入時期を決める前に、<strong>転入先の区役所こども家庭支援課へ一度電話</strong>してください。補助券の交付枚数や助成金の扱いは個別事情で変わる部分があり、窓口で確認するのが最も確実です。</li>
+</ul>
+
+<footer class="foot">
+  金額は2026年9月時点の各市公表情報にもとづく標準ケースの試算です。制度は年度ごとに改定されるほか、所得・加入保険・出産時期・転入時期によって実際の受給額は変わります。申請前に必ず各市の公式ページまたは区役所・こども家庭課の窓口でご確認ください。<br>
+  相模原市の妊婦健診受診券の総額115,000円は、公表されている券種と枚数（A23,000＋B10,000＋C12,000＋D5,000×8＋E6,000×5）から算出した値です。転入時期別の合計額のうち「約31万円」「約28万円」「約25万円」は、補助券の交付枚数が残り妊娠週数に応じて減ることを見込んだ概算で、実際の交付枚数は区役所の判断によります。
+</footer>
+
+</div>
+</body>
+</html>
