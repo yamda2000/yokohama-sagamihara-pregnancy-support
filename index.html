@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>横浜市・町田市・相模原市 妊娠出産サポート比較</title>
+<title>横浜市・町田市・相模原市 子育て支援比較</title>
 
 <style>
   :root {
@@ -167,6 +167,20 @@
   .axis { border-top: 1px solid var(--baseline); display: flex; justify-content: space-between; padding-top: 6px; margin-top: 2px; }
   .axis span { font-size: 0.75rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
 
+  .dbar-row { display: grid; grid-template-columns: 13em 1fr auto; gap: 12px; align-items: center; margin-bottom: 11px; }
+  .dbar-name { font-size: 0.86rem; color: var(--text-secondary); }
+  .dbar-name b { color: var(--text-primary); font-weight: 600; }
+  .dbar-track { height: 22px; display: flex; align-items: center; }
+  .dbar-fill { height: 100%; border-radius: 2px 4px 4px 2px; transition: filter .15s ease; }
+  .dbar-fill:hover { filter: brightness(1.12); }
+  .dbar-m { background: var(--series-3); }
+  .dbar-y { background: var(--series-1); }
+  .dbar-val { font-size: 0.85rem; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+  @media (max-width: 620px) {
+    .dbar-row { grid-template-columns: 1fr auto; }
+    .dbar-track { grid-column: 1 / -1; }
+  }
+
   .tablewrap { overflow-x: auto; margin: 16px 0 8px; -webkit-overflow-scrolling: touch; }
   table { border-collapse: collapse; width: 100%; min-width: 680px; font-size: 0.89rem; background: var(--surface-1); }
   caption { text-align: left; font-size: 0.83rem; color: var(--text-muted); padding-bottom: 8px; }
@@ -263,34 +277,35 @@
 <div class="wrap">
 
 <header class="top">
-  <h1>入籍・妊娠中のお二人へ<br>横浜市・町田市・相模原市のどこに住むのが得か</h1>
-  <p class="lede">夫が横浜市・妻が相模原市に居住、入籍予定で妊娠中というケースの比較です。両市に加えて、隣接する町田市（東京都）へ二人で引っ越す案も含めて試算しました。</p>
+  <h1>入籍・妊娠中のお二人へ<br>出産から大学まで、どこに住むのが得か</h1>
+  <p class="lede">夫が横浜市・妻が相模原市に居住、入籍予定で妊娠中というケースの比較です。両市に加えて隣接する町田市（東京都）へ二人で引っ越す案を含め、出産の給付金だけでなく<strong>保育料・給食費・私立中学高校の授業料まで、子どもが18歳になるまでの教育費</strong>を通して試算しました。</p>
   <p class="meta">2026年9月時点の公表情報にもとづく／単胎・第1子・市民税課税世帯を標準ケースとして試算</p>
 </header>
 
 <div class="verdict">
   <div class="verdict-head">結論</div>
-  <strong class="big">町田市が最も得です。出産までの受取額で横浜市を約2.5万円上回り、そのうえ<br>東京都の「018サポート」で18歳まで毎年6万円、累計108万円が上乗せされます。</strong>
-  <p>町田市が強いのは、市の制度が優れているからというより<strong>東京都の上乗せが厚い</strong>ためです。都の赤ちゃんファースト（13万円相当のギフト）、018サポート（0〜18歳に月5,000円）、無痛分娩費用助成（最大10万円）はいずれも神奈川県にはありません。町田市は横浜市・相模原市の両方に隣接しているので、通勤の選択肢を大きく変えずに移れるのも現実的です。</p>
-  <p>横浜市は市独自の現金給付14万円（出産費用助成9万円＋妊婦健診助成5万円）が強力で、出産までの現金だけを見れば3市で最多です。子どもの医療費が18歳まで完全無料（自己負担ゼロ）なのも横浜だけで、町田市は通院1回200円かかります。ただし018サポートの年6万円がこの差を大きく上回ります。</p>
-  <p><strong>相模原市に留まる案は、金額面では最下位</strong>です。妊婦健診の受診券は3市で最も手厚いものの、市独自の現金給付がないため合計で町田市に約13万円、横浜市に約11万円届きません。</p>
+  <strong class="big">教育費まで含めると、町田市が圧倒的です。<br>子どもが18歳になるまでの累計で、横浜市より約210〜250万円得になります。</strong>
+  <p>出産までの受取額の差は数万円にすぎません。決定的なのはその後です。<strong>東京都の0〜2歳児保育料の無償化（第1子から・所得制限なし）で約96万円、018サポートで108万円、私立中学に進むならさらに36万円</strong>。神奈川県にはいずれも同等の制度がありません。町田市は横浜市・相模原市の両方に隣接しているので、通勤圏を大きく変えずに移れるのも現実的です。</p>
+  <p>横浜市にも強みはあります。市独自の現金給付14万円（出産費用助成9万円＋妊婦健診助成5万円）は出産時点では3市で最多ですし、子どもの医療費が18歳まで完全無料（自己負担ゼロ）なのも横浜だけです。町田市は通院1回200円かかります。ただし18年間で見ると10万円程度の差で、東京都の上乗せには遠く及びません。</p>
+  <p><strong>相模原市に留まる案は金額面では最下位</strong>です。妊婦健診の受診券は3市で最も手厚いものの、市独自の現金給付がなく、教育費の上乗せもありません。</p>
+  <p><strong>ただし前提が2つあります。</strong>保育料の差96万円は認可保育所に預ける場合の話で、預けないなら差は消えます。私立中学の36万円も進学する場合だけです。それでも018サポート108万円は無条件なので、町田市が有利という結論は変わりません。</p>
 </div>
 
 <div class="tiles">
   <div class="tile accent">
-    <div class="label">町田市（東京都）</div>
+    <div class="label">町田市が横浜市より得する額</div>
+    <div class="value" style="color:var(--good-text)">約210万円<span class="unit">〜250万円</span></div>
+    <div class="note">18年間の累計（私立中進学なら250万円）</div>
+  </div>
+  <div class="tile">
+    <div class="label">出産までの受取額</div>
     <div class="value">357,250<span class="unit">円</span></div>
-    <div class="note">＋018サポート 年6万円（18歳まで）</div>
+    <div class="note">横浜332,700円／相模原225,000円</div>
   </div>
   <div class="tile">
-    <div class="label">横浜市</div>
-    <div class="value">332,700<span class="unit">円</span></div>
-    <div class="note">現金給付は3市で最多の24万円</div>
-  </div>
-  <div class="tile">
-    <div class="label">相模原市（現状維持）</div>
-    <div class="value">225,000<span class="unit">円</span></div>
-    <div class="note">市独自の現金給付なし</div>
+    <div class="label">教育費まわりの差</div>
+    <div class="value">約207万円<span class="unit">〜</span></div>
+    <div class="note">保育料96万＋018サポート108万ほか</div>
   </div>
 </div>
 
@@ -394,7 +409,142 @@
   </div>
 </div>
 
-<h2>2. 東京都に移ると増えるもの</h2>
+<h2>2. 教育費まで含めた18年間の差</h2>
+<p class="sub">ここが本題です。出産時の給付の差は数万円ですが、教育費の差は百万円単位になります。</p>
+
+<figure class="chart">
+  <figcaption>町田市と横浜市の差（子ども1人・18歳まで）</figcaption>
+  <div class="figsub">0歳は育休、1〜2歳で認可保育所を利用、高校は私立に進学する前提での試算です。</div>
+
+  <div class="legend">
+    <span><i class="swatch sw3"></i>町田市が得</span>
+    <span><i class="swatch sw1"></i>横浜市が得</span>
+  </div>
+
+  <div class="dbar-row">
+    <div class="dbar-name"><b>018サポート</b><br>月5,000円 × 18年</div>
+    <div class="dbar-track"><div class="dbar-fill dbar-m" style="width:90%" title="東京都 018サポート：年6万円×18年＝108万円。神奈川県に同等制度なし"></div></div>
+    <div class="dbar-val" style="color:var(--good-text)">+108万円</div>
+  </div>
+
+  <div class="dbar-row">
+    <div class="dbar-name"><b>0〜2歳の保育料</b><br>第1子から無償</div>
+    <div class="dbar-track"><div class="dbar-fill dbar-m" style="width:80%" title="東京都は2025年9月から第1子0〜2歳の保育料を無償化。横浜市で月4万円と仮定し2年間で96万円の差"></div></div>
+    <div class="dbar-val" style="color:var(--good-text)">+96万円</div>
+  </div>
+
+  <div class="dbar-row">
+    <div class="dbar-name"><b>私立中学の授業料助成</b><br>進学する場合のみ</div>
+    <div class="dbar-track"><div class="dbar-fill dbar-m" style="width:30%" title="東京都私立中学校等授業料軽減助成金：年10万円（2026年度は臨時加算で12万円）、所得制限なし。3年間で36万円"></div></div>
+    <div class="dbar-val" style="color:var(--good-text)">+36万円</div>
+  </div>
+
+  <div class="dbar-row">
+    <div class="dbar-name"><b>子どもの医療費</b><br>通院1回200円の差</div>
+    <div class="dbar-track"><div class="dbar-fill dbar-y" style="width:9%" title="横浜市は18歳まで自己負担ゼロ。町田市は通院1回200円。年30回通院で18年間なら約10.8万円の差"></div></div>
+    <div class="dbar-val" style="color:var(--series-1)">−10.8万円</div>
+  </div>
+
+  <div class="dbar-row">
+    <div class="dbar-name"><b>小中学校の給食費</b><br>概算</div>
+    <div class="dbar-track"><div class="dbar-fill dbar-m" style="width:8.3%" title="町田市は2025年1月から小中学校の給食費が無償。横浜市は2026年度から小学校を段階的に実質無償化。差は縮小傾向"></div></div>
+    <div class="dbar-val" style="color:var(--good-text)">+10万円</div>
+  </div>
+
+  <div class="dbar-row">
+    <div class="dbar-name"><b>私立高校の授業料</b><br>上限額の差</div>
+    <div class="dbar-track"><div class="dbar-fill dbar-m" style="width:5%" title="東京都は上限50.1万円、神奈川県は最大48万円。年2.1万円×3年で約6万円"></div></div>
+    <div class="dbar-val" style="color:var(--good-text)">+6万円</div>
+  </div>
+
+  <div class="dbar-row">
+    <div class="dbar-name"><b>出産までの給付</b><br>一時金の差</div>
+    <div class="dbar-track"><div class="dbar-fill dbar-m" style="width:2.1%" title="町田357,250円 − 横浜332,700円＝24,550円"></div></div>
+    <div class="dbar-val" style="color:var(--good-text)">+2.5万円</div>
+  </div>
+
+  <div class="axis"><span>0</span><span>30万</span><span>60万</span><span>90万</span><span>120万円</span></div>
+</figure>
+
+<div class="tablewrap">
+<table>
+  <caption>前提によって差はこう変わります</caption>
+  <thead>
+    <tr><th>前提</th><th class="num">町田が得する額<br>（対 横浜市）</th><th>内訳</th></tr>
+  </thead>
+  <tbody>
+    <tr class="best">
+      <td class="name">保育園あり・私立中学に進学</td>
+      <td class="num">約250万円</td>
+      <td>018サポート108万＋保育料96万＋私立中36万＋給食10万＋私立高6万＋出産時2.5万−医療費10.8万</td>
+    </tr>
+    <tr>
+      <td class="name">保育園あり・中学は公立</td>
+      <td class="num">約212万円</td>
+      <td>上記から私立中学助成36万円を除いたもの</td>
+    </tr>
+    <tr>
+      <td class="name">保育園を使わない・中学は公立</td>
+      <td class="num">約116万円</td>
+      <td>保育料の差96万円が消えるが、018サポート108万円は無条件で残る</td>
+    </tr>
+    <tr>
+      <td class="name">保育園を使わない・高校まで全部公立</td>
+      <td class="num">約110万円</td>
+      <td>ほぼ018サポート108万円がそのまま差になる</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout good">
+  <strong>どの前提でも100万円以上の差が残ります。</strong>変動するのは保育料と私立進学の部分で、018サポートの108万円は所得も進路も問わず確実に入ります。逆にいえば、共働きで保育園を使う予定なら差は200万円を超え、町田市を選ばない理由が金銭的にはほぼなくなります。
+</div>
+
+<h2>3. 教育費で効く東京都の制度</h2>
+<p class="sub">神奈川県にはない、または金額が上回るものだけを挙げます。</p>
+
+<div class="tablewrap">
+<table>
+  <caption>東京都の教育費支援</caption>
+  <thead>
+    <tr><th>制度</th><th class="num">金額</th><th>条件・神奈川県との違い</th></tr>
+  </thead>
+  <tbody>
+    <tr class="best">
+      <td class="name">0〜2歳児 保育料無償化</td>
+      <td class="num">月2〜7万円が0円に</td>
+      <td>2025年9月から<strong>第1子・所得制限なし</strong>で無償。認可保育所等が対象です。横浜市・相模原市では0〜2歳は世帯所得に応じた負担があり、共働き世帯なら月4万円前後が目安。給食費・延長保育料・おむつ代などの実費は東京都でも自己負担です。</td>
+    </tr>
+    <tr>
+      <td class="name">私立中学校等 授業料軽減助成金</td>
+      <td class="num">年10万円<br>（2026年度は12万円）</td>
+      <td>2024年度から<strong>所得制限が撤廃</strong>されました。2026年度は臨時加算2万円が付いて年12万円。都内在住で都内外の私立中学に通う生徒が対象です。神奈川県に同等の制度はありません。</td>
+    </tr>
+    <tr>
+      <td class="name">私立高校 授業料軽減助成金</td>
+      <td class="num">国と合わせ上限50.1万円</td>
+      <td>2024年度から所得制限を撤廃済み。神奈川県も所得制限を撤廃し最大48万円まで支援するため、<strong>差は年2万円程度</strong>と小さくなっています。どちらも対象は授業料のみで、入学金・施設費・制服代は自己負担です。</td>
+    </tr>
+    <tr>
+      <td class="name">都立高校 授業料無償化</td>
+      <td class="num">実質0円</td>
+      <td>所得制限なし。神奈川県立高校も国の就学支援金で実質無償のため、公立進学なら差はありません。</td>
+    </tr>
+    <tr>
+      <td class="name">小中学校 給食費</td>
+      <td class="num">町田市は無償</td>
+      <td>町田市は2025年1月から小中学校とも無償。横浜市は2026年度から小学校を段階的に実質無償化、相模原市は2026年4月から国の制度で月5,200円が支援されます。<strong>国の制度拡充で差は縮小傾向</strong>です。</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout">
+  <strong>大学の学費に自治体差はありません。</strong>国の修学支援新制度（授業料減免・給付型奨学金）は全国共通で、子どもが3人以上の多子世帯は2025年度から所得制限なしで授業料が減免されます。町田市・横浜市・相模原市のどこに住んでも同じ扱いです。
+</div>
+
+<h2>4. 東京都に移ると増えるもの（出産まわり）</h2>
 <p class="sub">町田市が有利なのは、市ではなく都の制度によるところが大きいです。神奈川県にない4つを押さえてください。</p>
 
 <div class="tablewrap">
@@ -432,7 +582,7 @@
   <strong>無痛分娩を考えているなら、転入の順番が決定的です。</strong>東京都の無痛分娩助成は「都内自治体で妊娠の届出をして母子健康手帳の交付を受け、以後申請日まで都内に住民登録がある」ことが要件です。つまり<strong>相模原市で妊娠届を出してしまうと、その後に町田市へ引っ越しても10万円を受け取れない可能性が高い</strong>ということです。無痛分娩の可能性が少しでもあるなら、妊娠届を出す前に転居してください。判断に迷う場合は東京都福祉局に直接確認することをおすすめします。
 </div>
 
-<h2>3. 転入のタイミングで何が変わるか</h2>
+<h2>5. 転入のタイミングで何が変わるか</h2>
 <p class="sub">どのプランでも共通して、早く動くほど有利で、出産後では手遅れになる制度があります。</p>
 
 <div class="tablewrap">
@@ -490,7 +640,7 @@
 <p>町田市を選ぶなら<strong>妊娠届を出す前</strong>が唯一の正解に近くなります。無痛分娩助成10万円がその一点にかかっているためです。横浜市を選ぶ場合も、妊娠届出前がもっとも有利で、間に合わなければ安定期（16〜27週）が現実的な次善策になります。</p>
 <p>どのプランでも<strong>出産予定日の1か月前が絶対的な締切</strong>です。予定日より早く産まれることは珍しくなく、出産してしまうと横浜の14万円も町田の13万円も受け取れなくなります。</p>
 
-<h2>4. 大原則：どの制度が誰の住所で決まるか</h2>
+<h2>6. 大原則：どの制度が誰の住所で決まるか</h2>
 <p class="sub">夫の住所は妊娠・出産の給付にほとんど関係ありません。ここを押さえておくと判断が楽になります。</p>
 
 <div class="tablewrap">
@@ -544,7 +694,7 @@
 </table>
 </div>
 
-<h2>5. 町田市の制度 <span class="pill city-m">全リスト</span></h2>
+<h2>7. 町田市の制度 <span class="pill city-m">全リスト</span></h2>
 <p class="sub">◆印は東京都の制度で、神奈川県の2市にはないものです。</p>
 
 <div class="tablewrap">
@@ -618,7 +768,7 @@
 </table>
 </div>
 
-<h2>6. 横浜市の制度 <span class="pill city-y">全リスト</span></h2>
+<h2>8. 横浜市の制度 <span class="pill city-y">全リスト</span></h2>
 <p class="sub">★印は横浜市の独自制度。</p>
 
 <div class="tablewrap">
@@ -682,7 +832,7 @@
 </table>
 </div>
 
-<h2>7. 相模原市の制度 <span class="pill city-s">全リスト</span></h2>
+<h2>9. 相模原市の制度 <span class="pill city-s">全リスト</span></h2>
 <p class="sub">◆印は相模原市が他の2市より手厚い項目。</p>
 
 <div class="tablewrap">
@@ -736,7 +886,7 @@
 </table>
 </div>
 
-<h2>8. 項目別の3市比較</h2>
+<h2>10. 項目別の3市比較</h2>
 
 <div class="tablewrap">
 <table>
@@ -811,6 +961,48 @@
       <td class="num win-y">1,500円/2h<br>産前20＋産後20回</td>
       <td class="num">1,800円/2h<br>産後1年以内</td>
     </tr>
+    <tr class="best">
+      <td class="name">0〜2歳の保育料（第1子）</td>
+      <td class="num win-m">0円<br>（所得制限なし）</td>
+      <td class="num">月2〜7万円<br>（所得に応じる）</td>
+      <td class="num">月2〜7万円<br>（所得に応じる）</td>
+    </tr>
+    <tr>
+      <td class="name">3〜5歳の保育料</td>
+      <td class="num">0円</td>
+      <td class="num">0円</td>
+      <td class="num">0円</td>
+    </tr>
+    <tr>
+      <td class="name">小中学校の給食費</td>
+      <td class="num win-m">無償<br>（2025年1月〜）</td>
+      <td class="num">2026年度から小学校を<br>段階的に実質無償化</td>
+      <td class="num">2026年4月から<br>月5,200円を支援</td>
+    </tr>
+    <tr>
+      <td class="name">私立中学の授業料助成</td>
+      <td class="num win-m">年10万円<br>（2026年度は12万円）</td>
+      <td class="num">—</td>
+      <td class="num">—</td>
+    </tr>
+    <tr>
+      <td class="name">私立高校の授業料支援</td>
+      <td class="num win-m">上限 50.1万円</td>
+      <td class="num">上限 48万円</td>
+      <td class="num">上限 48万円</td>
+    </tr>
+    <tr>
+      <td class="name">大学の学費支援</td>
+      <td class="num">国の制度（共通）</td>
+      <td class="num">国の制度（共通）</td>
+      <td class="num">国の制度（共通）</td>
+    </tr>
+    <tr class="total">
+      <td class="name">18歳までの累計差<br>（対 横浜市）</td>
+      <td class="num win-m">＋210〜250万円</td>
+      <td class="num">基準</td>
+      <td class="num">−11万円程度</td>
+    </tr>
     <tr>
       <td class="name">引っ越す人数</td>
       <td class="num">二人とも</td>
@@ -821,7 +1013,7 @@
 </table>
 </div>
 
-<h2>9. 町田市を選ぶ場合の進め方</h2>
+<h2>11. 町田市を選ぶ場合の進め方</h2>
 
 <ol class="timeline">
   <li class="critical">
@@ -870,21 +1062,24 @@
   <strong>産院を相模原・横浜のまま続ける場合は要確認。</strong>町田市の受診票は都内の契約医療機関で使うのが原則です。神奈川県内の産院に通い続ける場合は受診票が使えないことがあり、その際はいったん全額自己負担して、後から償還払いを申請することになります（出産日から1年以内）。また<strong>無痛分娩助成は「都が公表する対象医療機関」での出産に限られる</strong>ので、神奈川県内の産院では対象外になる可能性が高い点に注意してください。
 </div>
 
-<h2>10. 判断のポイント</h2>
+<h2>12. 判断のポイント</h2>
 
-<h3>金額だけを見るなら町田市</h3>
-<p>出産までで横浜市を約2.5万円上回り、018サポートで18歳まで年6万円が加わります。無痛分娩を選ぶなら差はさらに10万円広がります。累計では横浜市を100万円以上引き離す計算です。</p>
+<h3>金額で選ぶなら町田市、それも大差です</h3>
+<p>出産までの差は2.5万円にすぎませんが、18歳までの累計では横浜市を約210〜250万円引き離します。共働きで保育園を使うなら差は200万円を超え、専業で育てて全部公立でも018サポートの108万円は確実に残ります。無痛分娩を選ぶならさらに10万円です。</p>
 
 <h3>ただし引っ越すのは二人分です</h3>
-<p>町田案だけは夫婦とも転居するため、引越費用も物件探しの手間も2倍になります。横浜案なら妻だけ、相模原案なら夫だけの引っ越しで済みます。<strong>二人分の引越費用（20〜30万円程度）を差し引くと、初年度の収支では横浜案とほぼ並ぶ</strong>点は正直に見ておいてください。それでも018サポートが毎年6万円入るため、2年目以降で確実に逆転します。</p>
+<p>町田案だけは夫婦とも転居するため、引越費用も物件探しの手間も2倍になります。横浜案なら妻だけ、相模原案なら夫だけの引っ越しで済みます。<strong>二人分の引越費用は20〜30万円程度</strong>ですが、教育費の差はその10倍近くあるので、ここは判断を左右しません。</p>
 
-<h3>家賃と通勤で最終判断を</h3>
-<p>町田市は横浜市・相模原市の両方に隣接し、小田急線・JR横浜線が通っているため、どちらの勤務地にも通いやすい立地です。家賃相場は横浜市中心部より低く、相模原市とは同程度かやや高い水準です。<strong>制度の差が年6万円なのに対し、家賃が月1万円違えば年12万円</strong>。最後は住居費と通勤時間で決めるのが合理的です。</p>
+<h3>家賃と通勤は依然として最大の変数です</h3>
+<p>町田市は横浜市・相模原市の両方に隣接し、小田急線・JR横浜線が通っているため、どちらの勤務地にも通いやすい立地です。家賃相場は横浜市中心部より低く、相模原市とは同程度かやや高い水準です。<strong>制度の差が18年で210万円＝年12万円弱なのに対し、家賃が月1万円違えば年12万円</strong>。ちょうど拮抗する規模なので、物件を具体的に比較してから決めてください。</p>
+
+<h3>保育園に入れるかどうかは別途確認を</h3>
+<p>保育料が無償でも、認可保育所に入れなければ意味がありません。<strong>保育料の差96万円は「認可保育所に入れた場合」の話</strong>です。町田市・横浜市とも地域によって待機児童の状況が異なるので、転居先の候補が決まったら各市の入所状況を確認してください。認可外に預ける場合は補助の仕組みが変わります。</p>
 
 <h3>横浜市を選ぶ理由が残るケース</h3>
-<p>子どもが病院にかかる頻度が高くなりそうな事情がある場合、横浜市の医療費完全無料（自己負担ゼロ）は魅力です。町田市は通院1回200円かかります。とはいえ年間30回通院しても6,000円で、018サポートの年6万円には遠く及びません。<strong>妻だけの引っ越しで済ませたい、夫の住まいをそのまま使いたいという事情があるなら、横浜案も十分に合理的な選択です。</strong></p>
+<p>子どもが病院にかかる頻度が高くなりそうな事情がある場合、横浜市の医療費完全無料（自己負担ゼロ）は魅力です。町田市は通院1回200円かかります。とはいえ18年間で10万円程度の差です。<strong>妻だけの引っ越しで済ませたい、夫の住まいをそのまま使いたいという事情が強いなら横浜案も成立します</strong>が、金額だけで見れば200万円を手放す選択になります。</p>
 
-<h2>11. 国の制度（どこに住んでも同じ）</h2>
+<h2>13. 国の制度（どこに住んでも同じ）</h2>
 
 <div class="tablewrap">
 <table>
@@ -927,7 +1122,7 @@
 </table>
 </div>
 
-<h2>12. 出典</h2>
+<h2>14. 出典</h2>
 <ul class="sources">
   <li><a href="https://kosodate-machida.tokyo.jp/soshiki/3/1/8/1140.html">町田市 妊婦健康診査（受診票の回数と金額）</a></li>
   <li><a href="https://kosodate-machida.tokyo.jp/soshiki/3/1/8/11384.html">町田市 妊婦のための支援給付</a></li>
@@ -937,6 +1132,10 @@
   <li><a href="https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/tokyo_shussankosodateouen">東京都 出産・子育て応援事業（赤ちゃんファースト）</a></li>
   <li><a href="https://018support.metro.tokyo.lg.jp/">東京都 018サポート</a></li>
   <li><a href="https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/mutsubunben/subsidy">東京都 無痛分娩費用の助成</a></li>
+  <li><a href="https://kosodate-machida.tokyo.jp/soshiki/4/3/musyoka2507/13450.html">町田市 幼児教育・保育の無償化（第1子0〜2歳の保育料無償化）</a></li>
+  <li><a href="https://www.koho.metro.tokyo.lg.jp/2026/09/05.html">東京都 2026年度 私立中学校等の授業料助成</a></li>
+  <li><a href="https://kosodate-machida.tokyo.jp/soshiki/5/4/gakkoukyusyokuhi/266.html">町田市 学校給食費の制度について</a></li>
+  <li><a href="https://www.mext.go.jp/a_menu/sports/syokuiku/kyu-lighten.html">文部科学省 学校給食費の抜本的な負担軽減</a></li>
   <li><a href="https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/teate/">横浜市 各種手当・助成</a></li>
   <li><a href="https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/teate/syussanjosei.html">横浜市 出産費用助成金</a></li>
   <li><a href="https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/teate/ninpukenshinjosei.html">横浜市 妊婦健康診査費用助成金</a></li>
@@ -948,7 +1147,7 @@
   <li><a href="https://www.city.sagamihara.kanagawa.jp/kosodate/kenko/1026630/1007567/1007579/1007580.html">相模原市 こども医療費助成</a></li>
 </ul>
 
-<h2>13. 相談先</h2>
+<h2>15. 相談先</h2>
 <ul class="plain">
   <li><strong>東京都 018サポート コールセンター</strong>　0120-000-181</li>
   <li><strong>東京都福祉局</strong>（赤ちゃんファースト・無痛分娩助成の要件確認）</li>
@@ -962,7 +1161,8 @@
 <footer class="foot">
   金額は2026年9月時点の各自治体の公表情報にもとづく標準ケースの試算です。制度は年度ごとに改定されるほか、所得・加入保険・出産時期・転入時期によって実際の受給額は変わります。申請前に必ず各自治体の公式ページまたは窓口でご確認ください。<br>
   町田市の妊婦健診公費107,250円は、公表されている受診票の金額と枚数（健診1回目11,670円＋2〜14回目5,460円×13＋超音波5,300円×4＋子宮頸がん検診3,400円）から算出した値です。相模原市の115,000円も同様に券種と枚数（A23,000＋B10,000＋C12,000＋D5,000×8＋E6,000×5）から算出しています。<br>
-  <strong>町田市の産婦健康診査の助成額は公式ページで確認できなかったため、他の2市と同水準（2回×5,000円＝10,000円）と仮定して合計に含めています。</strong>実際の金額は町田市保健予防課にご確認ください。この項目を除いても、町田市が3市で最多という結論は変わりません。
+  <strong>町田市の産婦健康診査の助成額は公式ページで確認できなかったため、他の2市と同水準（2回×5,000円＝10,000円）と仮定して合計に含めています。</strong>実際の金額は町田市保健予防課にご確認ください。この項目を除いても、町田市が3市で最多という結論は変わりません。<br>
+  <strong>教育費の試算の前提：</strong>0歳は育休を取得し1〜2歳の2年間だけ認可保育所を利用、横浜市の0〜2歳保育料を月4万円（共働きで世帯年収700〜800万円程度を想定）として2年で96万円と算出しています。保育料は世帯の市民税所得割額によって月2万円台から7万円まで変動するため、実際の差はこれより大きくも小さくもなります。正確な額は各市の保育料表でご確認ください。給食費の差10万円は、国の制度拡充で横浜市・相模原市も負担軽減が進むことを見込んだ控えめな概算です。医療費の差は年30回通院を想定した概算です。
 </footer>
 
 </div>
